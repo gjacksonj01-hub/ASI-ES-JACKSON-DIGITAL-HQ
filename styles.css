@@ -1,17 +1,22 @@
+/* =========================
+   ASÍ ES JACKSON DIGITAL HQ
+   STYLES V1.1
+========================= */
+
 :root{
     --bg:#121212;
-    --card:#1E1E1E;
-    --text:#FFFFFF;
-    --accent:#FFB300;
+    --card:#1e1e1e;
+    --text:#ffffff;
+    --accent:#ffb300;
     --border:#333333;
 }
 
 .light-mode{
-    --bg:#F5F5F5;
-    --card:#FFFFFF;
+    --bg:#f5f5f5;
+    --card:#ffffff;
     --text:#222222;
-    --accent:#FFB300;
-    --border:#DDDDDD;
+    --accent:#ffb300;
+    --border:#dddddd;
 }
 
 *{
@@ -21,21 +26,37 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
+html,
+body{
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+}
+
 body{
     background:var(--bg);
     color:var(--text);
 }
+
+/* =========================
+   LAYOUT
+========================= */
 
 .app{
     display:flex;
     min-height:100vh;
 }
 
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar{
-    width:260px;
+    width:280px;
     background:#181818;
     border-right:1px solid var(--border);
     padding:20px;
+    transition:all .3s ease;
 }
 
 .logo-container{
@@ -43,12 +64,13 @@ body{
 }
 
 .logo-container h1{
-    font-size:20px;
     color:var(--accent);
+    font-size:28px;
+    line-height:1.1;
 }
 
 .logo-container span{
-    font-size:14px;
+    font-size:16px;
 }
 
 .nav-item{
@@ -57,14 +79,15 @@ body{
     background:none;
     color:var(--text);
     text-align:left;
-    padding:12px;
-    margin-bottom:6px;
-    border-radius:10px;
+    padding:14px;
+    border-radius:12px;
     cursor:pointer;
+    margin-bottom:8px;
+    font-size:18px;
 }
 
 .nav-item:hover{
-    background:#2A2A2A;
+    background:#2b2b2b;
 }
 
 .nav-item.active{
@@ -73,9 +96,15 @@ body{
     font-weight:bold;
 }
 
+/* =========================
+   CONTENIDO
+========================= */
+
 .main-content{
     flex:1;
+    width:100%;
     padding:20px;
+    overflow-x:hidden;
 }
 
 .topbar{
@@ -90,19 +119,24 @@ body{
     border:none;
     background:var(--card);
     color:var(--text);
-    padding:10px;
+    padding:12px;
     border-radius:10px;
     cursor:pointer;
+    font-size:18px;
 }
 
 .search-box{
     flex:1;
-    padding:10px;
-    border-radius:10px;
     border:1px solid var(--border);
     background:var(--card);
     color:var(--text);
+    border-radius:10px;
+    padding:12px;
 }
+
+/* =========================
+   SECCIONES
+========================= */
 
 .section{
     display:none;
@@ -112,24 +146,31 @@ body{
     display:block;
 }
 
+.section h2{
+    margin-bottom:20px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
 .cards-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:15px;
-    margin-top:20px;
 }
 
 .card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:15px;
+    border-radius:16px;
     padding:20px;
     margin-bottom:15px;
 }
 
 .card h3{
-    margin-bottom:10px;
     color:var(--accent);
+    margin-bottom:10px;
 }
 
 .card p{
@@ -144,23 +185,28 @@ li{
     margin-bottom:10px;
 }
 
-button{
-    transition:.2s;
-}
+/* =========================
+   MOBILE
+========================= */
 
-button:hover{
-    opacity:.9;
-}
-
-@media(max-width:768px){
+@media (max-width:768px){
 
     .sidebar{
+
         position:fixed;
-        left:-280px;
         top:0;
-        height:100%;
-        z-index:1000;
-        transition:.3s;
+        left:-100%;
+
+        width:280px;
+        max-width:85vw;
+
+        height:100vh;
+
+        z-index:9999;
+
+        overflow-y:auto;
+
+        box-shadow:0 0 20px rgba(0,0,0,.5);
     }
 
     .sidebar.open{
@@ -169,6 +215,18 @@ button:hover{
 
     .main-content{
         width:100%;
+        padding:15px;
     }
 
-  }
+    .cards-grid{
+        grid-template-columns:1fr;
+    }
+
+    .logo-container h1{
+        font-size:24px;
+    }
+
+    .nav-item{
+        font-size:16px;
+    }
+    }
