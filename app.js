@@ -1,122 +1,268 @@
-const navItems = document.querySelectorAll('.nav-item');
-const sections = document.querySelectorAll('.section');
+// ===============================
+// ASÍ ES JACKSON DIGITAL HQ
+// APP.JS v1.1
+// ===============================
 
-navItems.forEach(item => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    item.addEventListener('click', () => {
+    // ===============================
+    // ELEMENTOS
+    // ===============================
 
-        navItems.forEach(btn =>
-            btn.classList.remove('active')
-        );
+    const sidebar = document.getElementById("sidebar");
+    const menuBtn = document.getElementById("menuBtn");
+    const themeToggle = document.getElementById("themeToggle");
+    const searchInput = document.getElementById("searchInput");
+    const clearStorage = document.getElementById("clearStorage");
 
-        item.classList.add('active');
+    const navItems = document.querySelectorAll(".nav-item");
+    const sections = document.querySelectorAll(".section");
 
-        const target = item.dataset.section;
+    // ===============================
+    // MENÚ LATERAL
+    // ===============================
 
-        sections.forEach(section => {
-            section.classList.remove('active-section');
+    if (menuBtn) {
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.toggle("open");
+
         });
 
-        document
-            .getElementById(target)
-            .classList.add('active-section');
+    }
+
+    // ===============================
+    // NAVEGACIÓN ENTRE SECCIONES
+    // ===============================
+
+    navItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            // Quitar activo anterior
+            navItems.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            // Activar actual
+            item.classList.add("active");
+
+            // Obtener sección destino
+            const target = item.dataset.section;
+
+            // Ocultar todas
+            sections.forEach(section => {
+                section.classList.remove("active-section");
+            });
+
+            // Mostrar seleccionada
+            const destination =
+                document.getElementById(target);
+
+            if (destination) {
+                destination.classList.add("active-section");
+            }
+
+            // En móvil cerrar menú
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove("open");
+            }
+
+        });
 
     });
 
-});
+    // ===============================
+    // MODO OSCURO / CLARO
+    // ===============================
 
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.getElementById('sidebar');
+    const savedTheme =
+        localStorage.getItem("theme");
 
-menuBtn.addEventListener('click', () => {
+    if (savedTheme === "light") {
 
-    sidebar.classList.toggle('open');
+        document.body.classList.add("light-mode");
 
-});
+        if (themeToggle) {
+            themeToggle.innerHTML = "☀️";
+        }
 
-const themeToggle =
-document.getElementById('themeToggle');
+    }
 
-const savedTheme =
-localStorage.getItem('theme');
+    if (themeToggle) {
 
-if(savedTheme === 'light'){
-    document.body.classList.add('light-mode');
-    themeToggle.innerHTML = '☀️';
-}
+        themeToggle.addEventListener("click", () => {
 
-themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle("light-mode");
 
-    document.body.classList.toggle('light-mode');
+            const isLight =
+                document.body.classList.contains("light-mode");
 
-    const isLight =
-    document.body.classList.contains('light-mode');
+            localStorage.setItem(
+                "theme",
+                isLight ? "light" : "dark"
+            );
 
-    localStorage.setItem(
-        'theme',
-        isLight ? 'light' : 'dark'
-    );
+            themeToggle.innerHTML =
+                isLight ? "☀️" : "🌙";
 
-    themeToggle.innerHTML =
-        isLight ? '☀️' : '🌙';
+        });
 
-});
+    }
 
-const searchInput =
-document.getElementById('searchInput');
+    // ===============================
+    // BUSCADOR GLOBAL
+    // ===============================
 
-searchInput.addEventListener('keyup', () => {
+    if (searchInput) {
 
-    const value =
-    searchInput.value.toLowerCase();
+        searchInput.addEventListener("keyup", () => {
 
-    document
-    .querySelectorAll('.card')
-    .forEach(card => {
+            const value =
+                searchInput.value.toLowerCase();
 
-        const text =
-        card.innerText.toLowerCase();
+            const cards =
+                document.querySelectorAll(".card");
 
-        card.style.display =
-        text.includes(value)
-        ? 'block'
-        : 'none';
+            cards.forEach(card => {
 
-    });
+                const text =
+                    card.innerText.toLowerCase();
 
-});
+                card.style.display =
+                    text.includes(value)
+                        ? ""
+                        : "none";
 
-const clearStorage =
-document.getElementById('clearStorage');
+            });
 
-if(clearStorage){
+        });
 
-    clearStorage.addEventListener(
-        'click',
-        () => {
+    }
+
+    // ===============================
+    // LIMPIAR DATOS
+    // ===============================
+
+    if (clearStorage) {
+
+        clearStorage.addEventListener("click", () => {
+
+            const confirmar = confirm(
+                "¿Deseas eliminar todos los datos guardados?"
+            );
+
+            if (!confirmar) return;
 
             localStorage.clear();
 
             alert(
-                'Datos eliminados correctamente'
+                "Datos eliminados correctamente."
             );
 
+            location.reload();
+
+        });
+
+    }
+
+    // ===============================
+    // CHECKLISTS
+    // ===============================
+
+    const checkboxes =
+        document.querySelectorAll(
+            'input[type="checkbox"]'
+        );
+
+    checkboxes.forEach((checkbox, index) => {
+
+        const key =
+            `checklist_${index}`;
+
+        const savedValue =
+            localStorage.getItem(key);
+
+        if (savedValue === "true") {
+            checkbox.checked = true;
         }
-    );
 
-}
+        checkbox.addEventListener("change", () => {
 
-if('serviceWorker' in navigator){
-
-    window.addEventListener(
-        'load',
-        () => {
-
-            navigator.serviceWorker.register(
-                './service-worker.js'
+            localStorage.setItem(
+                key,
+                checkbox.checked
             );
 
-        }
+        });
+
+    });
+
+    // ===============================
+    // DATOS DEMO KPI
+    // ===============================
+
+    const followers =
+        document.getElementById("followersValue");
+
+    const reach =
+        document.getElementById("reachValue");
+
+    const shows =
+        document.getElementById("showsValue");
+
+    const content =
+        document.getElementById("contentValue");
+
+    if (followers)
+        followers.innerText = "1.250";
+
+    if (reach)
+        reach.innerText = "37.500";
+
+    if (shows)
+        shows.innerText = "4 / 12";
+
+    if (content)
+        content.innerText = "9 / 14";
+
+    // ===============================
+    // SERVICE WORKER
+    // ===============================
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then(() => {
+
+                    console.log(
+                        "Service Worker registrado"
+                    );
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "Error SW:",
+                        error
+                    );
+
+                });
+
+        });
+
+    }
+
+    // ===============================
+    // INICIO
+    // ===============================
+
+    console.log(
+        "ASÍ ES JACKSON DIGITAL HQ iniciado"
     );
 
-                        }
+});
