@@ -1,41 +1,102 @@
-const CACHE_NAME = 'jackson-hq-v1';
+// ======================================
+// ASÍ ES JACKSON DIGITAL HQ
+// SERVICE WORKER V2
+// ======================================
+
+const CACHE_NAME = "jackson-hq-v2";
 
 const urlsToCache = [
-  './',
-  './index.html',
-  './styles.css',
-  './app.js',
-  './manifest.json'
+    "./",
+    "./index.html",
+    "./styles.css",
+    "./app.js",
+    "./manifest.json"
 ];
 
-self.addEventListener('install', event => {
+// =========================
+// INSTALACIÓN
+// =========================
 
-  event.waitUntil(
+self.addEventListener("install", event => {
 
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+    console.log("Service Worker instalado");
 
-  );
+    self.skipWaiting();
+
+    event.waitUntil(
+
+        caches.open(CACHE_NAME)
+            .then(cache => {
+
+                return cache.addAll(urlsToCache);
+
+            })
+
+    );
 
 });
 
-self.addEventListener('fetch', event => {
+// =========================
+// ACTIVACIÓN
+// =========================
 
-  event.respondWith(
+self.addEventListener("activate", event => {
 
-    caches.match(event.request)
-      .then(response => {
+    console.log("Service Worker activado");
 
-        if(response){
-          return response;
-        }
+    event.waitUntil(
 
-        return fetch(event.request);
+        caches.keys().then(cacheNames => {
 
-      })
+            return Promise.all(
 
-  );
+                cacheNames.map(cacheName => {
+
+                    if (cacheName !== CACHE_NAME) {
+
+                        console.log(
+                            "Eliminando caché antigua:",
+                            cacheName
+                        );
+
+                        return caches.delete(cacheName);
+
+                    }
+
+                })
+
+            );
+
+        })
+
+    );
+
+    self.clients.claim();
+
+});
+
+// =========================
+// FETCH
+// =========================
+
+self.addEventListener("fetch", event => {
+
+    event.respondWith(
+
+        fetch(event.request)
+
+            .then(response => {
+
+                return response;
+
+            })
+
+            .catch(() => {
+
+                return caches.match(event.request);
+
+            })
+
+    );
 
 });
