@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ASÍ ES JACKSON DIGITAL HQ</title>
+
+<meta name="theme-color" content="#121212">
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="logo-container">
+            <h1>ASÍ ES JACKSON</h1>
+            <span>DIGITAL HQ</span>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active" data-section="dashboard">
+                🎯 Dashboard
+            </button>
+
+            <button class="nav-item" data-section="estrategia">
+                📈 Estrategia
+            </button>
+
+            <button class="nav-item" data-section="calendario">
+                📅 Calendario
+            </button>
+
+            <button class="nav-item" data-section="shows">
+                🎤 Shows
+            </button>
+
+            <button class="nav-item" data-section="contenido">
+                🎬 Contenido
+            </button>
+
+            <button class="nav-item" data-section="ideas">
+                💡 Ideas
+            </button>
+
+            <button class="nav-item" data-section="kpis">
+                📊 KPIs
+            </button>
+
+            <button class="nav-item" data-section="checklists">
+                ✅ Checklists
+            </button>
+
+            <button class="nav-item" data-section="roadmap">
+                🗺️ Roadmap
+            </button>
+
+            <button class="nav-item" data-section="configuracion">
+                ⚙️ Configuración
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button id="menuBtn" class="menu-btn">
+                ☰
+            </button>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar..."
+                class="search-box"
+            >
+
+            <button id="themeToggle" class="theme-btn">
+                🌙
+            </button>
+
+        </header>
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="section active-section">
+
+            <h2>Dashboard</h2>
+
+            <div class="cards-grid">
+
+                <div class="card">
+                    <h3>Seguidores</h3>
+                    <p id="followersValue">1250</p>
+                </div>
+
+                <div class="card">
+                    <h3>Alcance</h3>
+                    <p id="reachValue">37500</p>
+                </div>
+
+                <div class="card">
+                    <h3>Shows</h3>
+                    <p id="showsValue">4 / 12</p>
+                </div>
+
+                <div class="card">
+                    <h3>Contenido</h3>
+                    <p id="contentValue">9 / 14</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ESTRATEGIA -->
+
+        <section id="estrategia" class="section">
+
+            <h2>Estrategia</h2>
+
+            <div class="card">
+                <h3>Fase 1</h3>
+                <p>Construcción de presencia digital.</p>
+            </div>
+
+            <div class="card">
+                <h3>Fase 2</h3>
+                <p>Generación de descubrimiento.</p>
+            </div>
+
+            <div class="card">
+                <h3>Fase 3</h3>
+                <p>Posicionamiento del personaje.</p>
+            </div>
+
+            <div class="card">
+                <h3>Fase 4</h3>
+                <p>Construcción de comunidad.</p>
+            </div>
+
+            <div class="card">
+                <h3>Fase 5</h3>
+                <p>Conversión a espectadores.</p>
+            </div>
+
+        </section>
+
+        <!-- CALENDARIO -->
+
+        <section id="calendario" class="section">
+
+            <h2>Calendario Semanal</h2>
+
+            <div class="card">
+
+                <ul>
+
+                    <li>☐ Lunes - Reel</li>
+                    <li>☐ Martes - Clip</li>
+                    <li>☐ Miércoles - Crowdwork</li>
+                    <li>☐ Jueves - Historia</li>
+                    <li>☐ Viernes - Reel</li>
+                    <li>☐ Sábado - Show</li>
+                    <li>☐ Domingo - Encuesta</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- SHOWS -->
+
+        <section id="shows" class="section">
+
+            <h2>Shows</h2>
+
+            <div class="card">
+
+                <h3>Próximo Show</h3>
+
+                <p>Fecha:</p>
+                <p>Lugar:</p>
+                <p>Material Nuevo:</p>
+                <p>Videos Grabados:</p>
+
+            </div>
+
+        </section>
+
+        <!-- CONTENIDO -->
+
+        <section id="contenido" class="section">
+
+            <h2>Contenido</h2>
+
+            <div class="cards-grid">
+
+                <div class="card">Reels</div>
+                <div class="card">Shorts</div>
+                <div class="card">TikTok</div>
+                <div class="card">Crowdwork</div>
+
+            </div>
+
+        </section>
+
+        <!-- IDEAS -->
+
+        <section id="ideas" class="section">
+
+            <h2>Banco de Ideas</h2>
+
+            <div class="card">Matrimonio</div>
+            <div class="card">Hijos</div>
+            <div class="card">Caricuao</div>
+            <div class="card">La Guaira</div>
+            <div class="card">Venezuela</div>
+            <div class="card">Crisis de los 40</div>
+
+        </section>
+
+        <!-- KPIS -->
+
+        <section id="kpis" class="section">
+
+            <h2>KPIs</h2>
+
+            <div class="cards-grid">
+
+                <div class="card">
+                    Compartidos
+                </div>
+
+                <div class="card">
+                    Guardados
+                </div>
+
+                <div class="card">
+                    Comentarios
+                </div>
+
+                <div class="card">
+                    Mensajes
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CHECKLIST -->
+
+        <section id="checklists" class="section">
+
+            <h2>Checklists</h2>
+
+            <div class="card">
+
+                <ul>
+
+                    <li><input type="checkbox"> Cámara Principal</li>
+                    <li><input type="checkbox"> Cámara Secundaria</li>
+                    <li><input type="checkbox"> Audio</li>
+                    <li><input type="checkbox"> Crowdwork</li>
+                    <li><input type="checkbox"> Backup</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- ROADMAP -->
+
+        <section id="roadmap" class="section">
+
+            <h2>Roadmap 90 Días</h2>
+
+            <div class="card">
+                Semana 1 - Optimización de perfiles
+            </div>
+
+            <div class="card">
+                Semana 2 - Publicación intensiva
+            </div>
+
+            <div class="card">
+                Semana 3 - Comunidad
+            </div>
+
+            <div class="card">
+                Semana 4 - Métricas
+            </div>
+
+        </section>
+
+        <!-- CONFIG -->
+
+        <section id="configuracion" class="section">
+
+            <h2>Configuración</h2>
+
+            <div class="card">
+
+                <button id="clearStorage">
+                    Limpiar Datos
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+          </html>
